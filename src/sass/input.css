@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
+}
+
+body {
+  background-color: hsl(32, 58%, 66%);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 5%;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 5%;
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: 1px solid red;
+}/*# sourceMappingURL=input.css.map */
