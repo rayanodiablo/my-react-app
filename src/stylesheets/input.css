@@ -1,32 +1,121 @@
+.navBar {
+  display: inline-flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 2%;
+  margin: 10vh 0 0 0;
+  height: 100vh;
+  font-size: large;
+  font-family: "Kumbh Sans", "inter", "sans-serif";
+  font-weight: normal;
+  line-height: 130%;
+  font-size: 20px;
+  color: #008c9e;
+  background-color: #011e2b;
+}
+.navBar * {
+  margin: 2%;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 1vw 0 1vw;
+  background-color: #1e1a70;
+  top: 0;
+  left: 0;
+  height: 10vh;
+  width: 100%;
+  font-family: "Kumbh Sans", "inter", "sans-serif";
+  font-weight: normal;
+  line-height: 130%;
+  font-size: 24px;
+  color: #949494;
+}
+
+.header * {
+  padding: 5px;
+}
+.header div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-1 {
+  width: 8.33%;
+}
+
+.col-2 {
+  width: 16.66%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.33%;
+}
+
+.col-5 {
+  width: 41.66%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.33%;
+}
+
+.col-8 {
+  width: 66.66%;
+}
+
+.col-9 {
+  width: 75%;
+}
+
+.col-10 {
+  width: 83.33%;
+}
+
+.col-11 {
+  width: 91.66%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "poppins", sans-serif;
+  font-family: "inter", "poppins", sans-serif;
 }
 
 body {
-  background-color: hsl(118, 37%, 56%);
+  background-color: #020217;
+  margin: 12vh 0 0 25vw;
+  padding: 0 3vh;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  max-width: 5%;
-}
-
-.navBar {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 15px 5%;
-  height: 100%;
-  width: 20%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  outline: 1px solid red;
+.home {
+  font-family: "Kumbh Sans", "inter", "sans-serif";
+  font-weight: normal;
+  line-height: 130%;
+  font-size: 32px;
+  color: #008c9e;
+  position: absolute;
+  right: 45%;
 }/*# sourceMappingURL=input.css.map */
