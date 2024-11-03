@@ -1,42 +1,47 @@
-$textColor: #cccbcb;
+$textColor: #ffffff;
 $background: #020217;
-$primary: #1e1a70;
+$primary: #000000;
 $secondary: #949494;
-$secondary_2: #011e2b;
 $accent: #008c9e;
-$header-height: 10vh;
+
+
+$header-height: 90px;
+
+
 
 
 @mixin textFont {
-  font-family: 'Kumbh Sans', 'inter', 'sans-serif';
-  font-weight:normal;
+  font-family: 'Noto Sans Old Hungarian', 'Kumbh Sans', 'inter', 'sans-serif';
+  font-weight: 500;
   line-height: 130%;
+
 
 }
 
 @mixin heading ($color){
   @include textFont;
-    font-size: 32px;
+    font-size: 30px;
     color: $color;
 }
 
 @mixin med_heading ($color){
   @include textFont;
-    font-size: 28px;
+    font-size: 26px;
     color: $color;
 }
 
 @mixin small_heading ($color){
   @include textFont;
-    font-size: 24px;
+    font-size: 22px;
     color: $color;
 }
 
 @mixin text ($color){
   @include textFont;
-    font-size: 20px;
+    font-size: 18px;
     color: $color;
 }
+
 
 .navBar
 {
@@ -47,15 +52,58 @@ $header-height: 10vh;
   flex-direction: column;
   align-items: flex-start;
   padding: 15px 2%;
-  margin: ($header-height ) 0 0 0 ;
+  margin: ($header-height) 0 0 0 ;
   height: 100vh;
-  font-size: large;
+  @include med_heading(#9b9b9b9d);
 
-  @include text($accent);
-  background-color: $secondary_2;
-  
+  background-color: $primary;
+  outline: 2px solid hsla(0, 0%, 15%, 0.911);
+
   *{
     margin: 2%;
     text-align: center;
   }
+}
+
+#getStartedButton{
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  padding: 4px ;
+  @include text($textColor);
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: hsla(240, 2%, 35%, 0.705);
+  transition: all 0.5s ease-in-out;
+
+}  
+#getStartedButton:hover{
+    background-color: hsla(0, 0%, 80%, 0.699);
+    color: black;
+    transform: scale(1.1, 1.1);
+    box-shadow: 0 0 6px 3px #474747;
+
+  }
+
+.navBar{
+      li:hover{
+        color: white;
+        box-shadow: 0 0 8px 2px #474747;
+      };
+
+  li{
+    padding: 2px 4px;
+    border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+}
+
+.ul_navbar
+{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    *{
+      display: inherit;
+    }
 }

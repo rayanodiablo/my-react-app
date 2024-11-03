@@ -1,44 +1,53 @@
 @use 'navbar';
 @use 'header';
 
+@import url('https://fonts.googleapis.com/css?family=Kumbh%20Sans:700|Kumbh%20Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Old%20Hungarian:700|Noto%20Sans%20Old%20Hungarian:400');
+
+
+
 
 $textColor: #cccbcb;
 $background: #020217;
-$primary: #1e1a70;
+$primary: #080450;
 $secondary: #949494;
-$secondary_2: #011e2b;
 $accent: #008c9e;
-$header-height: 10vh;
+
+$header-height: 90px;
+
+
+
 
 
 @mixin textFont {
-  font-family: 'Kumbh Sans', 'inter', 'sans-serif';
-  font-weight:normal;
+  font-family: 'Noto Sans Old Hungarian', 'Kumbh Sans', 'inter', 'sans-serif';
+  font-weight: 500;
   line-height: 130%;
+
 
 }
 
 @mixin heading ($color){
   @include textFont;
-    font-size: 32px;
+    font-size: 30px;
     color: $color;
 }
 
 @mixin med_heading ($color){
   @include textFont;
-    font-size: 28px;
+    font-size: 26px;
     color: $color;
 }
 
 @mixin small_heading ($color){
   @include textFont;
-    font-size: 24px;
+    font-size: 22px;
     color: $color;
 }
 
 @mixin text ($color){
   @include textFont;
-    font-size: 20px;
+    font-size: 18px;
     color: $color;
 }
 
@@ -61,18 +70,18 @@ $header-height: 10vh;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'inter', 'poppins', sans-serif;
   }
   
   body{
     background-color: $background;
     margin: ($header-height + 2) 0 0 25vw ;
     padding: 0 3vh;
+    color: $secondary;
   }
 
-.home
-{
-  @include heading($accent);
-  position: absolute;
-  right: 45%;
+
+
+a{
+  text-decoration: none;
+  color: inherit;
 }

@@ -1,14 +1,20 @@
 import React from "react";
 import logo from '../assets/logo.png'
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
 
 function Header ()
 {
+
     return (
         <div className="header">
-            <img src={logo} alt="logo" />
-            <div>first </div>
-            <div>second</div>
-            <div>third</div>
+            <Link to='/' id="img-container"><img src={logo} alt="logo" /></Link>
+
+            <form id="form-container">
+                <input type="text" id="search-bar" placeholder="search" />
+                <input id="search_button" type="submit" value="Submit"/> 
+            </form>
         </div>
     )
 }
