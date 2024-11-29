@@ -1,56 +1,53 @@
-@use 'navbar';
 @use 'header';
+@use 'allContent';
+@use 'SignIn';
+@use 'SignUp';
 
 @import url('https://fonts.googleapis.com/css?family=Kumbh%20Sans:700|Kumbh%20Sans:400');
 @import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Old%20Hungarian:700|Noto%20Sans%20Old%20Hungarian:400');
 
 
 
-
-$textColor: #cccbcb;
+$textColor: white;
 $background: #020217;
-$primary: #080450;
-$secondary: #949494;
+$secondaryBackgroud: rgb(0, 38, 70);
 $accent: #008c9e;
+$borderColor: #c0c0c0;
 
-$header-height: 90px;
+$header-height: 64px;
 
 
-
-
+*
+{
+  overflow: hidden;
+}
 
 @mixin textFont {
   font-family: 'Noto Sans Old Hungarian', 'Kumbh Sans', 'inter', 'sans-serif';
   font-weight: 500;
-  line-height: 130%;
+  line-height: 150%;
 
 
 }
 
 @mixin heading ($color){
   @include textFont;
-    font-size: 30px;
+    font-size: 32px;
     color: $color;
 }
 
 @mixin med_heading ($color){
   @include textFont;
-    font-size: 26px;
+    font-size: 24px;
     color: $color;
 }
 
-@mixin small_heading ($color){
-  @include textFont;
-    font-size: 22px;
-    color: $color;
-}
 
 @mixin text ($color){
   @include textFont;
-    font-size: 18px;
+    font-size: 16px;
     color: $color;
 }
-
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -72,11 +69,17 @@ $header-height: 90px;
     box-sizing: border-box;
   }
   
-  body{
-    background-color: $background;
-    margin: ($header-height + 2) 0 0 25vw ;
-    padding: 0 3vh;
-    color: $secondary;
+  #root{
+    display: flex;
+    background-color: rgb(8 , 8, 8);
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: stretch;
+    padding: 0  160px 0 160px;
+    color: white;
+
   }
 
 
@@ -84,4 +87,21 @@ $header-height: 90px;
 a{
   text-decoration: none;
   color: inherit;
+}
+input{
+  text-decoration: none;
+  color: inherit;
+}
+
+#blurryBackground
+{
+    position: fixed;
+    top: 0;
+    left: 5%;
+    z-index: -1;
+    width:90%;
+    height: 100%;
+    border-radius: 10%;
+    background-color: rgb(255, 255, 255,0.1);
+
 }

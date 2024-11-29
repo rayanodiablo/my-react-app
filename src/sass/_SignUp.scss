@@ -1,0 +1,115 @@
+
+@import url('https://fonts.googleapis.com/css?family=Kumbh%20Sans:700|Kumbh%20Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Old%20Hungarian:700|Noto%20Sans%20Old%20Hungarian:400');
+
+$textColor: white;
+$background: #020217;
+$secondaryBackgroud: rgb(0, 38, 70);
+$accent: #008c9e;
+$borderColor: #c0c0c0;
+
+$header-height: 64px;
+
+
+@mixin textFont {
+    font-family: 'Noto Sans Old Hungarian', 'Kumbh Sans', 'inter', 'sans-serif';
+    font-weight: 300;
+    line-height: 150%;
+  
+  
+  }
+  
+  @mixin heading ($color){
+    @include textFont;
+      font-size: 32px;
+      color: $color;
+  }
+  
+  @mixin med_heading ($color){
+    @include textFont;
+      font-size: 24px;
+      color: $color;
+  }
+  
+  
+  @mixin text ($color){
+    @include textFont;
+      font-size: 16px;
+      color: $color;
+  }
+
+.signUpBox
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: transparent;
+    @include text($textColor);
+    min-height: 500px;
+    padding: 8px 0;
+    
+  form 
+  {
+    text-align: center;
+    padding: 16px ;
+  }
+  input{
+      background-color: #3D3D3D;
+      border-radius: 8px;
+      min-height: 25px;
+      min-width: 300px;
+      padding: 6px 8px;
+      @include text(white);
+  }
+  *
+  {
+    @include med_heading(white);
+  }
+  div 
+  {
+    border-bottom: 1px solid white;
+  }
+  
+  ::placeholder {
+    color: rgb(211, 211, 211);
+    opacity: 1; /* Firefox */
+  }
+  .Button
+  {
+    background-color: #234963;
+    @include text(white);
+    border: 1px solid white;
+    padding: 4px 12px;
+    border-radius: 16px 10px;
+    transition: all 0.3s ease-in-out;
+  }
+  .Button:hover
+  {
+    box-shadow: 0 0 4px 2px #76c3ce ;
+    transform: scale(1.1);
+  }
+  #nextButton
+  {
+    position: absolute;
+    bottom: 80px;
+    right: 80px;
+  }
+  #previousButton
+  {
+    position: absolute;
+    bottom: 80px;
+    left: 80px;
+  }
+  .SignInUpButton
+  {
+    position: absolute;
+    top: 80px;
+    left: 80px;
+  }
+
+}
+.SignInItem
+{
+    margin: 8px 0;
+}

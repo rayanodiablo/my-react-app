@@ -1,12 +1,11 @@
-@use 'headerElement';
-
 @import url('https://fonts.googleapis.com/css?family=Kumbh%20Sans:700|Kumbh%20Sans:400');
 @import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Old%20Hungarian:700|Noto%20Sans%20Old%20Hungarian:400');
 
 
+
 $textColor: white;
 $background: #020217;
-$secondaryBackgroud: rgb(0, 38, 70);
+$secondaryBackgroud: rgb(61,61,61,100%);
 $accent: #008c9e;
 $borderColor: #c0c0c0;
 
@@ -41,22 +40,14 @@ $header-height: 64px;
     color: $color;
 }
 
-.header
+.headerElement
 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  order: 1;
-  background-color: $secondaryBackgroud;
-
-  height: $header-height;
-
-  border-bottom: 1px solid $borderColor;
-
-
-  @include heading($textColor);
-
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    background-color: transparent;
+    padding: 8px 8px;
+    @include heading($textColor);
+    width: 150px;
 
 }
-

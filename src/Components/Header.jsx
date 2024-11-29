@@ -9,12 +9,9 @@ function Header ()
 
     return (
         <div className="header">
-            <Link to='/' id="img-container"><img src={logo} alt="logo" /></Link>
-
-            <form id="form-container">
-                <input type="text" id="search-bar" placeholder="search" />
-                <input id="search_button" type="submit" value="Submit"/> 
-            </form>
+            <div className="headerElement">
+                Logo
+            </div>
         </div>
     )
 }

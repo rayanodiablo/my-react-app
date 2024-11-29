@@ -1,12 +1,10 @@
-@use 'headerElement';
-
 @import url('https://fonts.googleapis.com/css?family=Kumbh%20Sans:700|Kumbh%20Sans:400');
 @import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Old%20Hungarian:700|Noto%20Sans%20Old%20Hungarian:400');
 
 
-$textColor: white;
+$textColor: #cccbcb;
 $background: #020217;
-$secondaryBackgroud: rgb(0, 38, 70);
+$secondaryBackgroud: rgb(61,61,61,100%);
 $accent: #008c9e;
 $borderColor: #c0c0c0;
 
@@ -40,23 +38,3 @@ $header-height: 64px;
     font-size: 16px;
     color: $color;
 }
-
-.header
-{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  order: 1;
-  background-color: $secondaryBackgroud;
-
-  height: $header-height;
-
-  border-bottom: 1px solid $borderColor;
-
-
-  @include heading($textColor);
-
-
-}
-
