@@ -1,3 +1,4 @@
+@use 'variables';
 @use 'header';
 @use 'allContent';
 @use 'SignIn';
@@ -71,7 +72,7 @@ $header-height: 64px;
   
   #root{
     display: flex;
-    background-color: rgb(8 , 8, 8);
+    background-color: $secondaryBackgroud;
     position: relative;
     height: 100vh;
     width: 100%;

@@ -13,20 +13,22 @@ function App() {
 
     return (
         <div id="allContent">  
-            <Layout />
                 <Routes  >
 
                     <Route path="/" element={<Home/>} />
-                    <Route path='/products' element={<Products/>}/>
-                    <Route path='/about' element={<About/>}/>
-                    <Route path='/contacts' element={<Contacts/>}/>
-                    <Route path="/SignIn" element={<SignIn/>} />
-                    <Route path="/SignUp" element={<SignUp/>} />
-                    <Route path="/SignUpFin" element={<SignUpFin/>} />
 
+                    <Route element={<Layout/>}>
+                        <Route path='/products' element={<Products/>}/>
+                        <Route path='/about' element={<About/>}/>
+                        <Route path='/contacts' element={<Contacts/>}/>
+                        <Route path="/SignIn" element={<SignIn/>} />
+                        <Route path="/SignUp" element={<SignUp/>} />
+                        <Route path="/SignUpFin" element={<SignUpFin/>} />
+                    </Route>
+
+                </Routes>
 
                     
-                </Routes>
 
 
         </div>

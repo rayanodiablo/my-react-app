@@ -1,18 +1,20 @@
 @use 'variables';
 
 
-
-.signUpBox
+  #signInBox
 {
+
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
-    background-color: transparent;
+    background-color: (variables.$background);
     @include variables.text((variables.$textColor));
     min-height: 500px;
+    border-bottom: white;
     padding: 8px 0;
-    
+
+
   form 
   {
     text-align: center;
@@ -26,54 +28,49 @@
       padding: 6px 8px;
       @include variables.text(white);
   }
-  *
-  {
-    @include variables.med_heading(white);
-  }
-  div 
-  {
-    border-bottom: 1px solid white;
-  }
   
   ::placeholder {
     color: rgb(211, 211, 211);
     opacity: 1; /* Firefox */
   }
-  .Button
+
+  label
+  {
+    padding: 4px 8px;
+    border: 1px  solid (variables.$borderColor);
+    border-radius: 8px;
+  }
+
+  button
   {
     background-color: #234963;
     @include variables.text(white);
     border: 1px solid white;
     padding: 4px 12px;
-    border-radius: 16px 10px;
+    border-radius: 16px;
     transition: all 0.3s ease-in-out;
   }
-  .Button:hover
+  div 
+  {
+    border-bottom: 1px solid white;
+  }
+  *
+  {
+    @include variables.med_heading(white);
+  }
+  button:hover
   {
     box-shadow: 0 0 4px 2px #76c3ce ;
     transform: scale(1.1);
   }
-  #nextButton
-  {
-    position: absolute;
-    bottom: 80px;
-    right: 80px;
-  }
-  #previousButton
-  {
-    position: absolute;
-    bottom: 80px;
-    left: 80px;
-  }
-  .SignInUpButton
-  {
-    position: absolute;
-    top: 80px;
-    left: 80px;
-  }
 
-}
-.SignInItem
-{
-    margin: 8px 0;
+  #newToAce
+  {
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+  }
+  #newToAce:hover
+  {
+    color: #008c9e;
+  }
 }

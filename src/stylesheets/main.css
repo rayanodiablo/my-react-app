@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css?family=Kumbh%20Sans:700|Kumbh%20Sans:400");
+@import url("https://fonts.googleapis.com/css?family=Noto%20Sans%20Old%20Hungarian:700|Noto%20Sans%20Old%20Hungarian:400");
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  order: 1;
+  background-color: rgb(0, 38, 70);
+  height: 64px;
+  border-bottom: 1px solid #c0c0c0;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 32px;
+  color: #cccbcb;
+}
+
+#allContent {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+  background-color: #020217;
+  flex: 1;
+  border: 1px solid #c0c0c0;
+  border-top: 0px;
+  border-bottom: 0px;
+  min-width: 700px;
+}
+
+#signInBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #020217;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: #cccbcb;
+  min-height: 500px;
+  border-bottom: white;
+  padding: 8px 0;
+}
+#signInBox form {
+  text-align: center;
+  padding: 16px;
+}
+#signInBox input {
+  background-color: #3D3D3D;
+  border-radius: 8px;
+  min-height: 25px;
+  min-width: 300px;
+  padding: 6px 8px;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: white;
+}
+#signInBox ::placeholder {
+  color: rgb(211, 211, 211);
+  opacity: 1; /* Firefox */
+}
+#signInBox label {
+  padding: 4px 8px;
+  border: 1px solid #c0c0c0;
+  border-radius: 8px;
+}
+#signInBox button {
+  background-color: #234963;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: white;
+  border: 1px solid white;
+  padding: 4px 12px;
+  border-radius: 16px;
+  transition: all 0.3s ease-in-out;
+}
+#signInBox div {
+  border-bottom: 1px solid white;
+}
+#signInBox * {
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 24px;
+  color: white;
+}
+#signInBox button:hover {
+  box-shadow: 0 0 4px 2px #76c3ce;
+  transform: scale(1.1);
+}
+#signInBox #newToAce {
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+#signInBox #newToAce:hover {
+  color: #008c9e;
+}
+
+.signUpBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: transparent;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: #cccbcb;
+  min-height: 500px;
+  padding: 8px 0;
+}
+.signUpBox form {
+  text-align: center;
+  padding: 16px;
+}
+.signUpBox input {
+  background-color: #3D3D3D;
+  border-radius: 8px;
+  min-height: 25px;
+  min-width: 300px;
+  padding: 6px 8px;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: white;
+}
+.signUpBox * {
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 24px;
+  color: white;
+}
+.signUpBox div {
+  border-bottom: 1px solid white;
+}
+.signUpBox ::placeholder {
+  color: rgb(211, 211, 211);
+  opacity: 1; /* Firefox */
+}
+.signUpBox .Button {
+  background-color: #234963;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: white;
+  border: 1px solid white;
+  padding: 4px 12px;
+  border-radius: 16px 10px;
+  transition: all 0.3s ease-in-out;
+}
+.signUpBox .Button:hover {
+  box-shadow: 0 0 4px 2px #76c3ce;
+  transform: scale(1.1);
+}
+.signUpBox #nextButton {
+  position: absolute;
+  bottom: 80px;
+  right: 80px;
+}
+.signUpBox #previousButton {
+  position: absolute;
+  bottom: 80px;
+  left: 80px;
+}
+.signUpBox .SignInUpButton {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+}
+
+.SignInItem {
+  margin: 8px 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  background-color: rgb(0, 38, 70);
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 160px 0 160px;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input {
+  text-decoration: none;
+  color: inherit;
+}
+
+#blurryBackground {
+  position: fixed;
+  top: 0;
+  left: 5%;
+  z-index: -1;
+  width: 90%;
+  height: 100%;
+  border-radius: 10%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,45 +1,5 @@
-@use 'headerElement';
 
-@import url('https://fonts.googleapis.com/css?family=Kumbh%20Sans:700|Kumbh%20Sans:400');
-@import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Old%20Hungarian:700|Noto%20Sans%20Old%20Hungarian:400');
-
-
-$textColor: white;
-$background: #020217;
-$secondaryBackgroud: rgb(0, 38, 70);
-$accent: #008c9e;
-$borderColor: #c0c0c0;
-
-$header-height: 64px;
-
-
-
-@mixin textFont {
-  font-family: 'Noto Sans Old Hungarian', 'Kumbh Sans', 'inter', 'sans-serif';
-  font-weight: 500;
-  line-height: 150%;
-
-
-}
-
-@mixin heading ($color){
-  @include textFont;
-    font-size: 32px;
-    color: $color;
-}
-
-@mixin med_heading ($color){
-  @include textFont;
-    font-size: 24px;
-    color: $color;
-}
-
-
-@mixin text ($color){
-  @include textFont;
-    font-size: 16px;
-    color: $color;
-}
+@use 'variables';
 
 .header
 {
@@ -48,14 +8,14 @@ $header-height: 64px;
   justify-content: center;
   align-items: stretch;
   order: 1;
-  background-color: $secondaryBackgroud;
+  background-color: (variables.$secondaryBackgroud);
 
-  height: $header-height;
+  height: (variables.$header-height);
 
-  border-bottom: 1px solid $borderColor;
+  border-bottom: 1px solid (variables.$borderColor);
 
 
-  @include heading($textColor);
+  @include variables.heading((variables.$textColor));
 
 
 }
