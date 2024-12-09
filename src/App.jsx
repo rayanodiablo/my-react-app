@@ -8,6 +8,7 @@ import Layout from './Components/Layout';
 import SignIn from './pages/SingIn';
 import SignUp from './pages/SignUp';
 import SignUpFin from './pages/SignUpFin';
+import Notes from './pages/MyNotes';
 
 function App() {
 
@@ -18,9 +19,7 @@ function App() {
                     <Route path="/" element={<Home/>} />
 
                     <Route element={<Layout/>}>
-                        <Route path='/products' element={<Products/>}/>
-                        <Route path='/about' element={<About/>}/>
-                        <Route path='/contacts' element={<Contacts/>}/>
+                        <Route path="/Notes" element={<Notes/>} />
                         <Route path="/SignIn" element={<SignIn/>} />
                         <Route path="/SignUp" element={<SignUp/>} />
                         <Route path="/SignUpFin" element={<SignUpFin/>} />

@@ -1,13 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
 
     return (
-        <div className="home">
-            <div id='coloredCirce'></div>
-            <div> <div>Welcome to</div> <div>Ace</div> </div>
-            <button>Get Started</button>
+        <div id="homeContainer" >
+            <div id='coloredCircle'></div>
+            <div id='welcomeTitle'> <div className='inlineDiv'>Welcome to</div> <div id='Ace' className='inlineDiv'>Ace</div> </div>
+            <Link to="/SignIn"><button id='getStarted'>Get Started</button></Link>
         </div>
     )
 } 

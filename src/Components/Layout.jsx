@@ -8,7 +8,7 @@ function Layout ()
         <>
             <div >
                 <Header/>
-                <Outlet></Outlet>
+                <Outlet/>
             </div>
         </>
     )

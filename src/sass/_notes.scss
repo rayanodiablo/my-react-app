@@ -1,0 +1,172 @@
+@use 'variables';
+
+
+
+#notesPageContainer
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    min-height: 100vh;
+    background-color: (variables.$background);
+
+    #searchNoteSection
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        padding: 48px 8px 48px 8px;
+        border: 1px solid white;
+
+        #searchNoteForm
+        {
+            display: flex;
+            justify-content: stretch;
+            background-color: black;
+            min-height: 40px;
+
+            *{
+                border-radius: 4px;
+            }
+        
+            #searchNoteInput
+            {
+                min-width: 300px;
+                background-color: variables.$greyBackground;
+                border: none;
+                outline: none;
+                @include variables.text(white);
+                padding: 2px 8px;
+                margin-left: 2px;
+
+               
+                
+
+            }
+
+            #searchNoteButton
+            {
+                border: none;
+                outline: none;
+                width: 40px;
+                text-align: center;
+                background-color: variables.$greyBackground;
+                transition: background-color 0.2s ease-in-out;
+
+            }
+            #searchNoteButton:hover
+            {
+                background-color: #6e6e6e;
+            }
+
+        }
+
+    }
+
+
+    #newNoteSection
+    {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        border: 1px solid white;
+        padding: 16px 0;
+
+        #newNoteGen
+        {
+            min-height: 100px;
+            min-width: 400px;
+            margin-left: 200px;
+            background-color: variables.$greyBackground;
+            @include variables.text(white);
+            padding: 16px;
+            border-radius: 4px;
+        }
+    }
+
+    #existingNotesSection
+    {
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items:start;
+        flex-wrap: wrap;
+
+        .noteContainer
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: stretch;
+            background-color: variables.$greyBackground;
+            min-height: 240px;
+            width: 200px;
+
+            .noteNavBar
+            {
+                display: flex;
+                justify-content: space-between;
+                align-items: stretch;
+                height: 80px;
+                background-color: #6e6e6e;
+            }
+
+            .noteContent
+            {
+                padding: 8px 16px;
+                @include variables.text(white);
+            }
+
+        }
+    }
+
+
+}
+
+
+
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  height: 8px;
+  background-size: 70%;
+}
+
+
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.747);
+    opacity: 1; /* Firefox */
+  }
+
+   /* Only show the placeholder when the div is empty 
+#newNoteGen:empty::before {
+
+    content: "New note...";
+    @include variables.text(white);
+    pointer-events: none; /* This ensures you can still click to edit 
+
+}
+
+
+#newNoteGen:empty:not([contenteditable="true"])::before {
+    content: "Enter some text...";
+    @include variables.text(white);
+    pointer-events: none;
+  }
+
+  
+/* Only show the placeholder when the div is empty 
+.placeholder-div:empty::before {
+    content: "Enter some text...";
+    @include variables.text(white);
+    pointer-events: none; /* This ensures you can still click to edit 
+  }*/

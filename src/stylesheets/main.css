@@ -1,12 +1,85 @@
 @import url("https://fonts.googleapis.com/css?family=Kumbh%20Sans:700|Kumbh%20Sans:400");
 @import url("https://fonts.googleapis.com/css?family=Noto%20Sans%20Old%20Hungarian:700|Noto%20Sans%20Old%20Hungarian:400");
+#homeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: transparent;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: #cccbcb;
+  min-height: 500px;
+  padding: 32px 0;
+}
+#homeContainer * {
+  text-align: center;
+  margin: 8px 0;
+}
+
+#welcomeTitle {
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 32px;
+  color: #cccbcb;
+  z-index: 3;
+  margin: 100px 0 60px 0;
+}
+#welcomeTitle #Ace {
+  background-image: linear-gradient(to right, rgb(18, 30, 133), rgb(42, 145, 177));
+  color: transparent;
+  background-clip: text;
+}
+
+#getStarted {
+  margin-top: 40px;
+}
+
+.inlineDiv {
+  display: inline;
+  padding: 4px 4px;
+}
+
+#coloredCircle {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-image: linear-gradient(45deg, #85D6C6, #5A8DAD, #266357);
+  opacity: 0.7;
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
+  position: absolute;
+  top: 4px;
+  left: 40%;
+}
+
+#getStarted {
+  background-color: #70A3A7;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: black;
+  padding: 4px 12px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+#getStarted:hover {
+  background-color: #acdfe2;
+  transform: scale(1.1);
+}
+
 .header {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
   order: 1;
-  background-color: rgb(0, 38, 70);
+  background-color: rgb(2, 28, 68);
   height: 64px;
   border-bottom: 1px solid #c0c0c0;
   font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
@@ -185,6 +258,141 @@
   margin: 8px 0;
 }
 
+#notesPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+  min-height: 100vh;
+  background-color: #020217;
+}
+#notesPageContainer #searchNoteSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 48px 8px 48px 8px;
+  border: 1px solid white;
+}
+#notesPageContainer #searchNoteSection #searchNoteForm {
+  display: flex;
+  justify-content: stretch;
+  background-color: black;
+  min-height: 40px;
+}
+#notesPageContainer #searchNoteSection #searchNoteForm * {
+  border-radius: 4px;
+}
+#notesPageContainer #searchNoteSection #searchNoteForm #searchNoteInput {
+  min-width: 300px;
+  background-color: #3D3D3D;
+  border: none;
+  outline: none;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: white;
+  padding: 2px 8px;
+  margin-left: 2px;
+}
+#notesPageContainer #searchNoteSection #searchNoteForm #searchNoteButton {
+  border: none;
+  outline: none;
+  width: 40px;
+  text-align: center;
+  background-color: #3D3D3D;
+  transition: background-color 0.2s ease-in-out;
+}
+#notesPageContainer #searchNoteSection #searchNoteForm #searchNoteButton:hover {
+  background-color: #6e6e6e;
+}
+#notesPageContainer #newNoteSection {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border: 1px solid white;
+  padding: 16px 0;
+}
+#notesPageContainer #newNoteSection #newNoteGen {
+  min-height: 100px;
+  min-width: 400px;
+  margin-left: 200px;
+  background-color: #3D3D3D;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: white;
+  padding: 16px;
+  border-radius: 4px;
+}
+#notesPageContainer #existingNotesSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: wrap;
+}
+#notesPageContainer #existingNotesSection .noteContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+  background-color: #3D3D3D;
+  min-height: 240px;
+  width: 200px;
+}
+#notesPageContainer #existingNotesSection .noteContainer .noteNavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 80px;
+  background-color: #6e6e6e;
+}
+#notesPageContainer #existingNotesSection .noteContainer .noteContent {
+  padding: 8px 16px;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: white;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  height: 8px;
+  background-size: 70%;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.747);
+  opacity: 1; /* Firefox */
+}
+
+/* Only show the placeholder when the div is empty 
+#newNoteGen:empty::before {
+
+    content: "New note...";
+    @include variables.text(white);
+    pointer-events: none; /* This ensures you can still click to edit 
+
+}
+
+
+#newNoteGen:empty:not([contenteditable="true"])::before {
+    content: "Enter some text...";
+    @include variables.text(white);
+    pointer-events: none;
+  }
+
+
+/* Only show the placeholder when the div is empty 
+.placeholder-div:empty::before {
+    content: "Enter some text...";
+    @include variables.text(white);
+    pointer-events: none; /* This ensures you can still click to edit 
+  }*/
 * {
   margin: 0;
   padding: 0;
@@ -193,13 +401,16 @@
 
 #root {
   display: flex;
-  background-color: rgb(0, 38, 70);
+  background-image: url(../assets/black-plain-concrete-textured-background.jpg);
+  background-color: rgba(0, 0, 24, 0.719);
+  background-blend-mode: overlay;
+  background-size: 70% 70%;
   position: relative;
   height: 100vh;
   width: 100%;
   justify-content: center;
   align-items: stretch;
-  padding: 0 160px 0 160px;
+  padding: 0 120px 0 120px;
   color: white;
 }
 
@@ -221,7 +432,9 @@ input {
   width: 90%;
   height: 100%;
   border-radius: 10%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(175, 21, 21, 0.1);
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 }
 
 /*# sourceMappingURL=main.css.map */
