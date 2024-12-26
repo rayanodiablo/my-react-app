@@ -1,17 +1,39 @@
 import React, { useState } from "react";
+import { handleAddNote } from "../controller/controller";
+import { getToken } from "../formHandler/useFormData";
 
-const NewNoteGen = () =>
+const NewNoteGen = ({setNotes, setErrorMessage} ) =>
 {
     const [noteContent, setNoteContent] = useState("");
 
 
 
-    const handleBlur = () => {
+    const handleBlur = async () => {
         if(noteContent.trim() !== "")
         {
             //saving the note the user left
+            
             console.log('saving note: ', noteContent);
-            setNoteContent("");
+            try{
+                const token = getToken()
+                const response = await handleAddNote({noteContent}, token);
+                console.log("response received from the server : ", JSON.stringify(response));
+                setNotes((prev) =>[...prev, response])
+                setErrorMessage("");
+                
+            }
+            catch(error)
+            {
+                console.log("error has occured : ",error.message);
+                setErrorMessage("error creating the new note!");
+                
+            }
+            finally
+            {
+                setNoteContent("");
+                return
+            }
+
         }
 
         console.log("newNoteGen component has lost focus!");    
@@ -28,7 +50,7 @@ const NewNoteGen = () =>
         placeholder="New Note..."
         value={noteContent}
         onBlur={handleBlur}
-        onInput={handleInputChange} > {noteContent}</textarea>
+        onInput={handleInputChange} > </textarea>
     )
 }
 

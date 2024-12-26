@@ -1,23 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = ({ SignUpFormData, handleChange }) => {
+   
 
 
     return(
         <div className="signUpBox">
                 <div id="SignUpTitle" className="SignInItem">Welcome to ACE!</div>
-                    <form action="">
-                        <input type="text" name="firstName"  placeholder="First Name" className="SignInItem"/>
+                    <form  >
+                        <input type="text" name="firstName"  placeholder="First Name" className="SignInItem" onChange={handleChange}/>
                         <br />
                         <br />
-                        <input type="text" name="lastName" placeholder="Last Name" className="SignInItem"/>
+                        <input type="text" name="lastName" placeholder="Last Name" className="SignInItem" onChange={handleChange}/>
                         <br />
                         <br />
-                        <input type="text" name="accountName" placeholder="account Name" className="SignInItem"/>
+                        <input type="text" name="userName" placeholder="User Name" className="SignInItem" onChange={handleChange}/>
                         <br />
                         <br />
-                        <input type="text" name="Gmail" placeholder="Gmail" className="SignInItem"/>
+                        <input type="text" name="email" placeholder="email" className="SignInItem" onChange={handleChange}/>
                         <br />
                         <br />
                         
