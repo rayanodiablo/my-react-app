@@ -81,20 +81,37 @@ export async function handleAddNote (noteContent, token)
 
 export async function handleDeleteNote (noteId, token) {
     try{
-        const response = axios.delete("http://localhost:3000/SignedIn/Notes",  {
+        console.log("token sent is : " + token + " of type :" + typeof token);
+        const response = await axios.delete(`http://localhost:3000/SignedIn/Notes?noteId=${noteId}`,  {
             headers : {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-            data : {noteId}
-        },
-    );
-        console.log(`note with note id: ${noteId} successfully deleted! response: ${response}`);
+                Authorization : `Bearer ${token}`
+            }
+    });
+        console.log(`note with note id: ${noteId} successfully deleted! response: ${response.data}`);
         return response.data;
     }
     catch(error){
-        console.error(`error occured while deleting the note with id : ${noteId} error: ${error.message}`);
+        console.error(`error occured while deleting the note with id : ${JSON.stringify(noteId)} error: ${error.message}`);
         throw error;
     }
 }
 
+export async function handleUpdate (noteObject, token) {
+    try{
+        const response = await axios.put("http://localhost:3000/SignedIn/Notes", noteObject, {
+            headers : {
+                "Content-Type" : "application/json",
+                Authorization : `Bearer ${token}`
+            }
+        })
+    }
+    catch(error)
+    {
+        console.log("error has happend while updating the note!: ", error.message);
+        throw error;
+    }
+}
+
+export async function handleLogout (){
+    
+}
