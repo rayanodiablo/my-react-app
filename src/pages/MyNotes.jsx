@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NewNoteGen from "../Components/NewNoteGen";
-import { handleFetchAllNotes } from "../controller/controller";
-import { getToken } from "../formHandler/useFormData";
+import { handleFetchAllNotes, handleRequestToProtected } from "../controller/controller";
 import Note from "../Components/Note";
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />;
 
@@ -9,27 +8,25 @@ const Notes =  () => {
 
     const [notes, setNotes] = useState([]);
     const [message, setMessage] = useState("");
-    const [errorMessage, setErrorMessage] = useState("")
-    const token = getToken()
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect( () => {
             const fetchNotes = async() => { 
             try{ 
 
-                const response = await handleFetchAllNotes (token);
+                const response = await handleRequestToProtected( async (accessToken) => await handleFetchAllNotes (accessToken));
+                console.log("from the mynotes component, here are the notes: ", response);
                 if(!response || response.length === 0)
                 {
-                    setMessage("create a new note!");
                     return;
                 };
-                setMessage("");
                 setNotes(response);
             }
             catch(error)
             {
 
-                setMessage("");
                 setErrorMessage("failed loading your messages");
+                return;
             }
         };
         fetchNotes();
@@ -52,15 +49,14 @@ const Notes =  () => {
 
             <section id="newNoteSection"> <NewNoteGen setNotes={setNotes} setErrorMessage={setErrorMessage}/></section>
            
-           
-            {message && <div className="message"> {message} </div>}
+            { notes.length === 0 && <div className="messages"> {"Create new Notes!"} </div>}
 
            
             {errorMessage && <div className="errorMessage"> {errorMessage} </div>}
            
 
 
-            <section id="existingNotesSection"> { notes.map(note => <Note noteObject={note} key={note.noteId} />)}</section>
+            <section id="existingNotesSection"> { notes.map(note => <Note noteObject={note} key={note.noteId} setNotes={setNotes} />)}</section>
         </div>
     );
 }

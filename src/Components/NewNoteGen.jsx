@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { handleAddNote } from "../controller/controller";
-import { getToken } from "../formHandler/useFormData";
+import { handleAddNote, handleRequestToProtected } from "../controller/controller";
 
 const NewNoteGen = ({setNotes, setErrorMessage} ) =>
 {
@@ -15,10 +14,9 @@ const NewNoteGen = ({setNotes, setErrorMessage} ) =>
             
             console.log('saving note: ', noteContent);
             try{
-                const token = getToken()
-                const response = await handleAddNote({noteContent}, token);
+                const response = await handleRequestToProtected(async (accessToken)=> await handleAddNote({noteContent}, accessToken));
                 console.log("response received from the server : ", JSON.stringify(response));
-                setNotes((prev) =>[...prev, response])
+                setNotes((prev) =>[response, ...prev]);
                 setErrorMessage("");
                 
             }

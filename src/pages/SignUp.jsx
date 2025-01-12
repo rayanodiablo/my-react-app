@@ -21,9 +21,11 @@ const SignUp = ({ SignUpFormData, handleChange }) => {
                         <input type="text" name="email" placeholder="email" className="SignInItem" onChange={handleChange}/>
                         <br />
                         <br />
+
                         
                         <Link to='/SignUpFin'><button className="Button" id="nextButton">NEXT</button></Link>
                         <Link to='/SignIn'><button className="Button SignInUpButton">SignIn</button></Link>
+
 
                     </form> 
 

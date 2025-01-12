@@ -49,12 +49,16 @@
 
             #searchNoteButton
             {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 border: none;
                 outline: none;
                 width: 40px;
-                text-align: center;
                 background-color: variables.$greyBackground;
+                
                 transition: background-color 0.2s ease-in-out;
+                
 
             }
             #searchNoteButton:hover
@@ -94,10 +98,11 @@
         
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        align-items:stretch;
+        justify-content: start;
+        align-items:flex-start;
         flex-wrap: wrap;
         padding: 4px;
+        gap: 8px;
         
 
         .noteContainer
@@ -105,36 +110,57 @@
             display: flex;
             flex-direction: column;
             justify-content: start;
-            margin: 2px ;
-            background-color: variables.$greyBackground;
+            margin: 8px ;
+            background-color: transparent;
             min-height: 240px;
             width: 200px;
+            outline: 1px solid gray;
+            border-radius: 4px;
+            box-shadow: rgb(255, 255, 255) 1px 1px 0px ;
 
             .noteNavBar
             {
                 display: flex;
                 justify-content: space-between;
                 align-items: stretch;
-                height: 24px;
+                height: 20px;
                 background-color: #6e6e6e;
+                button {
+                    padding: 0 4px ;
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
+                    transition: background-color 0.15s ease-in-out ;
+                    font-size: large;
+                    line-height: 1;
+
+                };
+                button:hover{
+                        background-color: rgba(197, 50, 24, 0.815) !important;
+                      };
+               
             }
 
             .noteContent
             {
-                background-color: variables.$greyBackground;
+                background-color: rgb(12, 12, 12);
                 padding: 8px 16px;
                 @include variables.text(white);
                 
-                outline: 1px solid white;
+                //outline: 1px solid red;
                 border: none;
                 resize: none; 
                 overflow: hidden;
 
-                min-height: 200px; /* Set initial minimum height */
+                min-height: 216px; /* Set initial minimum height */
                 width: 100%; /* Ensure it fills the parent width */
         
                 /* Allow content-based growth */
                 height: auto; 
+            }
+            .noteContent:focus{
+                outline: none;
+                border: none;
             }
 
         }
@@ -153,8 +179,9 @@
   'wght' 400,
   'GRAD' 0,
   'opsz' 24;
-  height: 8px;
   background-size: 70%;
+  line-height: 1;
+  overflow: hidden;
 }
 
 .material-symbols-outlined-close {

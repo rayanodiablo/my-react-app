@@ -1,5 +1,14 @@
 import axios from "axios";
 
+export function getToken (key){
+    return localStorage.getItem(key) ;
+}
+
+export function setToken(key, value){
+    localStorage.setItem(key, value);
+}
+
+
 export async function handleSignUp (userInfos) 
 {
     try{
@@ -104,6 +113,7 @@ export async function handleUpdate (noteObject, token) {
                 Authorization : `Bearer ${token}`
             }
         })
+        return response.data;
     }
     catch(error)
     {
@@ -114,4 +124,47 @@ export async function handleUpdate (noteObject, token) {
 
 export async function handleLogout (){
     
+}
+
+// handleRequestToProtected(async (accessToken) =>{
+//      addnNote(noteId, accessToken)})
+
+// Unified request handler for protected routes
+export async function handleRequestToProtected(requestHandler) {
+    const accessToken = getToken("accessToken");  // Fetch token from storage
+
+    try {
+        // Try using the provided access token first
+        const response = await requestHandler(accessToken);
+        console.log("✅ Request successful! Response:", JSON.stringify(response));
+        return response;
+    } catch (err) {
+        console.warn("⚠️ Access token expired or invalid. Attempting refresh...");
+
+        const refreshToken = getToken("refreshToken");
+        if (!refreshToken) {
+            console.error("❌ No refresh token found. Redirecting to sign-in.");
+            window.location.href = "/SignIn";  // Redirect user for re-authentication
+            throw new Error("No refresh token available");
+        }
+
+        try {
+            // Attempt to get a new access token using the refresh token
+            const { data } = await axios.post("http://localhost:3000/token", {}, {
+                withCredentials: true // Sends the secure cookie automatically
+            });
+
+            const newAccessToken = data.accessToken;
+            setToken("accessToken", newAccessToken);  // Save the new access token
+
+            // Retry the original request with the new token
+            const retryResponse = await requestHandler(newAccessToken);
+            console.log("✅ Request successful after token refresh:", retryResponse.data);
+            return retryResponse;
+        } catch (refreshError) {
+            console.error("❌ Refresh token invalid or expired. Redirecting to sign-in.");
+            window.location.href = "/SignIn";  
+            throw new Error("Failed to refresh token: " + refreshError.message);
+        }
+    }
 }

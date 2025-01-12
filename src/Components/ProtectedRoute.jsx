@@ -1,9 +1,9 @@
 import React from "react";
 import {Navigate, replace } from "react-router-dom";
-import {getToken } from "../formHandler/useFormData"
+import {getToken } from "../controller/controller"
 
 const ProtectedRoute = ({children}) => {
-    const token = getToken();
+    const token = getToken("accessToken");
     if(!token)
     {
         return <Navigate to={'/SignIn'} replace/>

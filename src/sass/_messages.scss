@@ -1,0 +1,22 @@
+@use 'variables';
+
+
+.messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    @include variables.med_heading(rgb(158, 158, 158));
+    padding: 24px;
+
+}
+
+.errorMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    @include variables.med_heading(rgba(253, 47, 11, 0.815) );
+    padding: 24px;
+}
+

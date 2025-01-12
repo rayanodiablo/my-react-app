@@ -74,6 +74,10 @@
   transform: scale(1.1);
 }
 
+a {
+  padding: 8px;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -124,7 +128,7 @@
   padding: 16px;
 }
 #signInBox input {
-  background-color: #3D3D3D;
+  background-color: #3D3D3D !important;
   border-radius: 8px;
   min-height: 25px;
   min-width: 300px;
@@ -241,17 +245,17 @@
 .signUpBox #nextButton {
   position: absolute;
   bottom: 80px;
-  right: 80px;
+  right: 240px;
 }
 .signUpBox #previousButton {
   position: absolute;
   bottom: 80px;
-  left: 80px;
+  left: 240px;
 }
 .signUpBox .SignInUpButton {
   position: absolute;
   top: 80px;
-  left: 80px;
+  left: 240px;
 }
 
 .SignInItem {
@@ -297,10 +301,12 @@
   margin-left: 2px;
 }
 #notesPageContainer #searchNoteSection #searchNoteForm #searchNoteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   outline: none;
   width: 40px;
-  text-align: center;
   background-color: #3D3D3D;
   transition: background-color 0.2s ease-in-out;
 }
@@ -331,49 +337,69 @@
 #notesPageContainer #existingNotesSection {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
+  justify-content: start;
+  align-items: flex-start;
   flex-wrap: wrap;
   padding: 4px;
+  gap: 8px;
 }
 #notesPageContainer #existingNotesSection .noteContainer {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  margin: 2px;
-  background-color: #3D3D3D;
+  margin: 8px;
+  background-color: transparent;
   min-height: 240px;
   width: 200px;
+  outline: 1px solid gray;
+  border-radius: 4px;
+  box-shadow: rgb(255, 255, 255) 1px 1px 0px;
 }
 #notesPageContainer #existingNotesSection .noteContainer .noteNavBar {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  height: 24px;
+  height: 20px;
   background-color: #6e6e6e;
 }
+#notesPageContainer #existingNotesSection .noteContainer .noteNavBar button {
+  padding: 0 4px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.15s ease-in-out;
+  font-size: large;
+  line-height: 1;
+}
+#notesPageContainer #existingNotesSection .noteContainer .noteNavBar button:hover {
+  background-color: rgba(197, 50, 24, 0.815) !important;
+}
 #notesPageContainer #existingNotesSection .noteContainer .noteContent {
-  background-color: #3D3D3D;
+  background-color: rgb(12, 12, 12);
   padding: 8px 16px;
   font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
   font-weight: 500;
   line-height: 150%;
   font-size: 16px;
   color: white;
-  outline: 1px solid white;
   border: none;
   resize: none;
   overflow: hidden;
-  min-height: 200px; /* Set initial minimum height */
+  min-height: 216px; /* Set initial minimum height */
   width: 100%; /* Ensure it fills the parent width */
   /* Allow content-based growth */
   height: auto;
 }
+#notesPageContainer #existingNotesSection .noteContainer .noteContent:focus {
+  outline: none;
+  border: none;
+}
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  height: 8px;
   background-size: 70%;
+  line-height: 1;
+  overflow: hidden;
 }
 
 .material-symbols-outlined-close {
@@ -408,15 +434,66 @@
     @include variables.text(white);
     pointer-events: none; /* This ensures you can still click to edit 
   }*/
+.messages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 24px;
+  color: rgb(158, 158, 158);
+  padding: 24px;
+}
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 24px;
+  color: rgba(253, 47, 11, 0.815);
+  padding: 24px;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 html, body {
   height: 100%; /* Allow content growth */
   min-width: 1000px;
+}
+
+html {
+  /* width */
+  /* width on hover */
+  /* Track */
+  /* Handle */
+  /* Handle on hover: */
+}
+html ::-webkit-scrollbar {
+  width: 8px;
+}
+html ::-webkit-scrollbar:hover {
+  width: 20px;
+}
+html ::-webkit-scrollbar-track {
+  background: #2b2b2b;
+}
+html ::-webkit-scrollbar-thumb {
+  background: rgba(226, 226, 226, 0);
+  transition: background-color 1s ease-in-out;
+}
+html ::-webkit-scrollbar-thumb:hover {
+  background-color: #929292;
 }
 
 #root {

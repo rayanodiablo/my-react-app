@@ -1,16 +1,8 @@
 import { useState } from "react";
-import {handleSignIn, handleSignUp, handleFetchAllNotes, handleDeleteNote} from "../controller/controller";
+import {handleSignIn, handleSignUp, setToken} from "../controller/controller";
 import { replace, useNavigate } from "react-router-dom";
 
 // functions for saving, reading and removing the toking from the local storage of the browser: 
-
-export const setToken = (token) => {    
-    localStorage.setItem("authToken", token);
-};
-
-export const getToken = () => localStorage.getItem("authToken");
-
-export const removeToken = () => localStorage.removeItem("authToken");
 
 
 
@@ -118,12 +110,12 @@ export function useSignInFormData () {
         try{
                 const response = await handleSignIn(signInFormData);
                 
-                console.log(`the received token is : ${JSON.stringify(response.token)}`);
-                if(response.token)
+                console.log(`the received access token is : ${JSON.stringify(response.accessToken)} `);
+                if(response.accessToken)
                 {
-                    setToken(response.token);
+                    setToken( "accessToken", response.accessToken);
                     console.log("user Signed In successfully!");
-                    navigate('/Notes')
+                    navigate('/Notes');
                 }
                 else
                 {

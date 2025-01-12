@@ -5,17 +5,48 @@
 @use 'SignIn';
 @use 'SignUp';
 @use 'notes';
+@use 'messages';
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
+
   }
 
   
 html, body {
   height: 100%; /* Allow content growth */
   min-width: 1000px;
+  
+}
+
+html{
+  /* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+  /* width on hover */
+  ::-webkit-scrollbar:hover {
+    width: 20px;
+  }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2b2b2b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e2e2e200;
+  transition: background-color 1s ease-in-out;
+}
+
+/* Handle on hover: */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #929292;
+}
 }
   
   #root{

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { handleDeleteNote, handleUpdate } from "../controller/controller";
-import { getToken } from "../formHandler/useFormData";
+import React, { useEffect, useRef, useState } from "react";
+import { handleDeleteNote, handleUpdate, handleRequestToProtected } from "../controller/controller";
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close" />;
 
-const Note = ({noteObject}) => {
+const Note = ({noteObject, setNotes} ) => {
 
     const [noteContent, setNoteContent] = useState(noteObject.noteContent);
     const [lastSavedState, setNextState] = useState(noteObject.noteContent);
-    const [visible, setVisible] = useState(true);
+    const textareaRef = useRef(null);
 
     function handleChange (e) {
         setNoteContent(e.target.value);
@@ -23,14 +22,12 @@ const Note = ({noteObject}) => {
             noteId : noteObject.noteId,
             noteContent
         };
-        const token = getToken();
         try{
             console.log("updated note should be : ", updatedNoteObject.noteContent);
             console.log("note id is: ", updatedNoteObject.noteId)
-            const response = await handleUpdate(updatedNoteObject, token);
-            console.log("updated the note successfully! , response : ",response.data);
+            const response = await handleRequestToProtected(async (token)=>{ await handleUpdate(updatedNoteObject, token)}); 
+            console.log("updated the note successfully! , response : ",response);
             setNextState(noteContent);
-            setVisible(false);
         }
         catch(error)
         {
@@ -42,10 +39,11 @@ const Note = ({noteObject}) => {
 
     const handleDelete = async (e) => {
         try{
-            const token = getToken();
-            const response = await handleDeleteNote(noteObject.noteId, token);
+            const response = await handleRequestToProtected(async (accessToken)=>{  await handleDeleteNote(noteObject.noteId, accessToken)});
             console.log("note deleted ! response from the server: ", response);
-            setVisible(false);
+            //setVisible(false);
+            setNotes((prevNotes) => prevNotes.filter((object) => object.noteId !== noteObject.noteId));
+            return;
         }
         catch(err){
             console.log("error deleting the note from the server! error: ",err.message );
@@ -53,18 +51,29 @@ const Note = ({noteObject}) => {
         }
     }
 
+    const adjustHeight = () =>{
+        const textarea = textareaRef.current
+        if (textarea) {
+            const minHeight = 216;
+            textarea.style.minHeight = 'auto';
+            const newHeight = textarea.scrollHeight < minHeight ? `${minHeight}px` : `${textarea.scrollHeight}px`;
+            textarea.style.minHeight = newHeight;
+        }
+    }
+
+    useEffect(adjustHeight, [noteContent]);
+
     return(
-         visible ? 
            ( 
             <div className="noteContainer">
                 <div className="noteNavBar">
-                    <button onClick={handleDelete}><span class="material-symbols-outlined-close">x</span></button>
+                    <button onClick={handleDelete}>x</button>
                 </div>
-                <textarea name="noteContent" className="noteContent" value={noteContent} onChange={handleChange} onBlur={handleBlur} placeholder="Note..." >
+                <textarea ref={textareaRef} name="noteContent" className="noteContent" value={noteContent} onChange={handleChange} onBlur={handleBlur} placeholder="Note..." >
                 </textarea>
             </div>
             
-           ) : null
+           ) 
     
     )
 }
