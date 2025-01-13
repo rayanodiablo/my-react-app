@@ -35,13 +35,13 @@ export function useSignUpFormData () {
     const handleSignUpFormSubmission = async () =>{
     
         const {password, confirmPassword, ...userInfo} = SignUpFormData;
-/*
+
         if(password !== confirmPassword)
         {
             setSignUpErrorMessage("password and confirmPassword should match!");
             return;
         }
-*/
+
         setSignUpErrorMessage(""); // deleting any previous errors rendering on the page
 
         

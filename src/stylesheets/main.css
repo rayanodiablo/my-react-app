@@ -114,14 +114,16 @@ a {
   justify-content: space-between;
   align-items: center;
   background-color: #020217;
-  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
-  font-weight: 500;
-  line-height: 150%;
-  font-size: 16px;
-  color: #cccbcb;
   min-height: 500px;
   border-bottom: white;
   padding: 8px 0;
+}
+#signInBox #SignInTitle {
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 24px;
+  color: white;
 }
 #signInBox form {
   text-align: center;
@@ -160,26 +162,28 @@ a {
   border-radius: 16px;
   transition: all 0.3s ease-in-out;
 }
-#signInBox div {
-  border-bottom: 1px solid white;
-}
-#signInBox * {
-  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
-  font-weight: 500;
-  line-height: 150%;
-  font-size: 24px;
-  color: white;
-}
 #signInBox button:hover {
   box-shadow: 0 0 4px 2px #76c3ce;
   transform: scale(1.1);
 }
 #signInBox #newToAce {
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 24px;
+  color: white;
   text-align: center;
   transition: all 0.2s ease-in-out;
 }
 #signInBox #newToAce:hover {
   color: #008c9e;
+}
+#signInBox #forgetPassword {
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 24px;
+  color: white;
 }
 
 .signUpBox {
@@ -393,6 +397,29 @@ a {
 #notesPageContainer #existingNotesSection .noteContainer .noteContent:focus {
   outline: none;
   border: none;
+}
+
+#logout {
+  display: block;
+  position: fixed;
+  top: 40px;
+  right: 30px;
+  padding: 4px 12px;
+  background-color: rgb(129, 129, 129);
+  font-family: "Noto Sans Old Hungarian", "Kumbh Sans", "inter", "sans-serif";
+  font-weight: 500;
+  line-height: 150%;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  outline: 1px solid white;
+  border-radius: 2px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+#logout:hover {
+  background-color: rgba(255, 255, 255, 0.733);
+  transform: scale(1.1);
 }
 
 .material-symbols-outlined {

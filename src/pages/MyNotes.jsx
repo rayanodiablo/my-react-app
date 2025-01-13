@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NewNoteGen from "../Components/NewNoteGen";
-import { handleFetchAllNotes, handleRequestToProtected } from "../controller/controller";
+import { handleFetchAllNotes, handleLogout, handleRequestToProtected } from "../controller/controller";
 import Note from "../Components/Note";
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />;
 
@@ -9,6 +9,7 @@ const Notes =  () => {
     const [notes, setNotes] = useState([]);
     const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     useEffect( () => {
             const fetchNotes = async() => { 
@@ -34,9 +35,30 @@ const Notes =  () => {
     }
      , [])
 
+    async function handleLogoutClick (e){
+        try{
+            setIsButtonDisabled(true);
+            await handleLogout();
+            console.log("logged out successfully!");
+            return;
+        }
+        catch(err)
+        {
+            setErrorMessage("error logging out!");
+            console.error("error logging out!", err.message);
+            return;
+        }
+        finally{
+            setIsButtonDisabled(false);
+        }
+    }
+
     return(
         <div id="notesPageContainer">
 
+            <button id="logout" onClick={handleLogoutClick} disabled={isButtonDisabled}>
+                {isButtonDisabled ? 'Logging Out...' : 'Log Out'}
+            </button>
             <section id="searchNoteSection">
                 <form id="searchNoteForm" onSubmit={
                     (e) =>{

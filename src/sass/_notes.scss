@@ -169,8 +169,25 @@
 
 }
 
+#logout{
+    display: block;
+    position: fixed;
+    top: 40px;
+    right: 30px;
+    padding: 4px 12px;
+    background-color: rgb(129, 129, 129);
+    @include variables.text(rgb(0, 0, 0));
+    outline: 1px solid white;
+    border-radius: 2px;
+    border: none;
+    transition: all 0.2s ease-in-out;
 
-
+}
+#logout:hover{
+    background-color: rgba(255, 255, 255, 0.733)
+    ;
+    transform: scale(1.1);
+}
 
 
 .material-symbols-outlined {

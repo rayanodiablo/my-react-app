@@ -123,8 +123,19 @@ export async function handleUpdate (noteObject, token) {
 }
 
 export async function handleLogout (){
-    
-}
+    // Clear access token from localStorage
+    localStorage.removeItem("accessToken");
+  
+    // Send request to backend to clear the refresh token cookie
+    try {
+      await axios.post("http://localhost:3000/logout"); // Your logout route to clear the cookie
+      // Redirect to login page after successful logout
+      window.location.href = "/SignIn"; // Adjust to your route
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+  
 
 // handleRequestToProtected(async (accessToken) =>{
 //      addnNote(noteId, accessToken)})
