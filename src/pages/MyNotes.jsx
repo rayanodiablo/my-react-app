@@ -78,7 +78,7 @@ const Notes =  () => {
            
 
 
-            <section id="existingNotesSection"> { notes.map(note => <Note noteObject={note} key={note.noteId} setNotes={setNotes} />)}</section>
+            <section id="existingNotesSection"> { notes.map(note => <Note noteObject={note} key={note.id} setNotes={setNotes} />)}</section>
         </div>
     );
 }

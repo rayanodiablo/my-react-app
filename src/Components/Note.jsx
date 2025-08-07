@@ -4,30 +4,45 @@ import { handleDeleteNote, handleUpdate, handleRequestToProtected } from "../con
 
 const Note = ({noteObject, setNotes} ) => {
 
-    const [noteContent, setNoteContent] = useState(noteObject.noteContent);
-    const [lastSavedState, setNextState] = useState(noteObject.noteContent);
+
+    const [noteState, noteStateSetter] = useState(noteObject);
+
+    const [lastSavedState, setNextState] = useState(noteObject);
     const textareaRef = useRef(null);
+    const titleTextareaRef = useRef(null);
 
-    function handleChange (e) {
-        setNoteContent(e.target.value);
+    function handleNoteChange (e) {
+        const {value, name} = e.target;
+        noteStateSetter((prev) => ({
+            ...prev,
+            [name] : value // only change the input that is being typed into
+        }));
     };
+    
 
-    async function handleBlur (e) {
-        if(noteContent === lastSavedState)
+    
+    async function handleBlur () {
+        if(noteState.content === lastSavedState.content && noteState.title === lastSavedState.title  )
         {
             console.log("no changes made!");
             return;
         };
-        const updatedNoteObject = {
-            noteId : noteObject.noteId,
-            noteContent
-        };
+
         try{
-            console.log("updated note should be : ", updatedNoteObject.noteContent);
-            console.log("note id is: ", updatedNoteObject.noteId)
-            const response = await handleRequestToProtected(async (token)=>{ await handleUpdate(updatedNoteObject, token)}); 
+            //logout for developpement debugging purposes
+            console.log("updated note should be : ", noteState.content);
+            console.log("note id is: ", noteState.id);
+
+            //actual code
+            const response = await handleRequestToProtected(async (token)=>{ await handleUpdate(noteState, token)}); 
             console.log("updated the note successfully! , response : ",response);
-            setNextState(noteContent);
+
+            setNextState(noteState);
+            setNotes((prevNotes) => {
+                const nextNotes = prevNotes;
+                nextNotes.find(notesObj => notesObj.id === noteObject.id).content = noteState.content;
+                return nextNotes;
+            })
         }
         catch(error)
         {
@@ -39,10 +54,10 @@ const Note = ({noteObject, setNotes} ) => {
 
     const handleDelete = async (e) => {
         try{
-            const response = await handleRequestToProtected(async (accessToken)=>{  await handleDeleteNote(noteObject.noteId, accessToken)});
+            const response = await handleRequestToProtected(async (accessToken)=>{  await handleDeleteNote(noteObject.id, accessToken)});
             console.log("note deleted ! response from the server: ", response);
             //setVisible(false);
-            setNotes((prevNotes) => prevNotes.filter((object) => object.noteId !== noteObject.noteId));
+            setNotes((prevNotes) => prevNotes.filter((object) => object.id !== noteObject.id));
             return;
         }
         catch(err){
@@ -53,15 +68,23 @@ const Note = ({noteObject, setNotes} ) => {
 
     const adjustHeight = () =>{
         const textarea = textareaRef.current
+        const titleTextarea = titleTextareaRef.current
+        
         if (textarea) {
             const minHeight = 216;
             textarea.style.minHeight = 'auto';
             const newHeight = textarea.scrollHeight < minHeight ? `${minHeight}px` : `${textarea.scrollHeight}px`;
             textarea.style.minHeight = newHeight;
         }
+        if (titleTextarea) {
+            const minHeight = 40;
+            titleTextarea.style.minHeight = 'auto';
+            const newHeight = titleTextarea.scrollHeight < minHeight ? `${minHeight}px` : `${titleTextarea.scrollHeight}px`;
+            titleTextarea.style.minHeight = newHeight;
+        }
     }
 
-    useEffect(adjustHeight, [noteContent]);
+    useEffect(adjustHeight, [noteState]);
 
     return(
            ( 
@@ -69,9 +92,13 @@ const Note = ({noteObject, setNotes} ) => {
                 <div className="noteNavBar">
                     <button onClick={handleDelete}>x</button>
                 </div>
-                <textarea ref={textareaRef} name="noteContent" className="noteContent" value={noteContent} onChange={handleChange} onBlur={handleBlur} placeholder="Note..." >
+                <textarea ref={titleTextareaRef} name="title" className="noteTitle" value={noteState.title} onChange={handleNoteChange} onBlur={handleBlur} placeholder="Title..."></textarea>
+                <textarea ref={textareaRef} name="content" className="noteContent" value={noteState.content} onChange={handleNoteChange} onBlur={handleBlur} placeholder="Note..." >
                 </textarea>
+                <div className="noteMetadata"> <div className="noteMetadataDiv createdAt">Created: {noteState.created_at.replace("T", " ").replace("Z", "").split(".")[0]}</div>   <div className="noteMetadataDiv UpdatedAt">Updated: {noteState.updated_at.replace("T", " ").replace("Z", "").split(".")[0]}</div>  </div>
             </div>
+
+            //  created_at.replace("T", " ").replace("Z", "").split(".")[0]
             
            ) 
     

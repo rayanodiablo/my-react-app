@@ -41,3 +41,9 @@ $header-height: 64px;
     font-size: 16px;
     color: $color;
 }
+
+@mixin small_text ($color){
+    @include textFont;
+    font-size: 10px;
+    color: $color;
+}

@@ -19,8 +19,7 @@
         justify-content: start;
         align-items: center;
         padding: 48px 8px 48px 8px;
-        border: 1px solid white;
-
+ 
         #searchNoteForm
         {
             display: flex;
@@ -76,7 +75,7 @@
         display: flex;
         justify-content: start;
         align-items: center;
-        border: 1px solid white;
+        outline: 1px solid white;
         padding: 16px 0;
 
         #newNoteGen
@@ -107,13 +106,23 @@
 
         .noteContainer
         {
+            textarea {
+            all: unset; /* ← resets all inherited/built-in styles */
+            resize: none; /* optional: disables manual resizing */
+            }
+
+            textarea:focus {
+            outline: none; /* remove focus border */
+            box-shadow: none; /* some browsers apply this */
+            border: none; /* remove any default border */
+            }
             display: flex;
             flex-direction: column;
             justify-content: start;
             margin: 8px ;
             background-color: transparent;
             min-height: 240px;
-            width: 200px;
+            width: 300px;
             outline: 1px solid gray;
             border-radius: 4px;
             box-shadow: rgb(255, 255, 255) 1px 1px 0px ;
@@ -141,14 +150,26 @@
                
             }
 
+            .noteTitle{
+                background-color: rgb(24, 24, 24);
+                padding: 8px 16px;
+                @include variables.text(white);
+                border:  1px solid rgb(110, 110, 110);
+                resize: none; 
+                overflow: hidden;
+                
+                min-height: 0; /* Set initial minimum height */
+                width: 100%; /* Ensure it fills the parent width */                
+            }
             .noteContent
             {
+
                 background-color: rgb(12, 12, 12);
                 padding: 8px 16px;
                 @include variables.text(white);
                 
-                //outline: 1px solid red;
                 border: none;
+                border-bottom:  1px solid rgb(110, 110, 110);
                 resize: none; 
                 overflow: hidden;
 
@@ -158,11 +179,32 @@
                 /* Allow content-based growth */
                 height: auto; 
             }
+
             .noteContent:focus{
                 outline: none;
                 border: none;
             }
 
+            .noteMetadata{
+                
+                background-color: rgb(19, 19, 19);
+                padding: 0px;
+                height: 40px;
+                width: 100%;
+                @include variables.small_text(rgba(238, 238, 238, 0.74));
+                display: flex;
+                justify-content:space-between;
+                align-items: stretch;
+
+                .noteMetadataDiv{
+                    padding: 0;
+                    width: 49%;
+                    display: flex;
+                    justify-content: center; /* Horizontal */
+                    align-items: center;              
+                }
+            }
+            
         }
     }
 
@@ -176,17 +218,18 @@
     right: 30px;
     padding: 4px 12px;
     background-color: rgb(129, 129, 129);
-    @include variables.text(rgb(0, 0, 0));
-    outline: 1px solid white;
-    border-radius: 2px;
-    border: none;
+    @include variables.text(rgba(0, 0, 0, 0.733));
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid white;
     transition: all 0.2s ease-in-out;
 
 }
 #logout:hover{
-    background-color: rgba(255, 255, 255, 0.733)
-    ;
-    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.733);
+    @include variables.text(rgb(0, 0, 0));
+
+    transform: scale(1.05);
 }
 
 
@@ -214,27 +257,3 @@
     color: rgba(255, 255, 255, 0.747);
     opacity: 1; /* Firefox */
   }
-
-   /* Only show the placeholder when the div is empty 
-#newNoteGen:empty::before {
-
-    content: "New note...";
-    @include variables.text(white);
-    pointer-events: none; /* This ensures you can still click to edit 
-
-}
-
-
-#newNoteGen:empty:not([contenteditable="true"])::before {
-    content: "Enter some text...";
-    @include variables.text(white);
-    pointer-events: none;
-  }
-
-  
-/* Only show the placeholder when the div is empty 
-.placeholder-div:empty::before {
-    content: "Enter some text...";
-    @include variables.text(white);
-    pointer-events: none; /* This ensures you can still click to edit 
-  }*/

@@ -71,7 +71,12 @@ export async function handleFetchAllNotes (token)
 export async function handleAddNote (noteContent, token) 
 {
     try{
-        const response = await axios.post("http://localhost:3000/SignedIn/Notes", noteContent, {
+        const response = await axios.post("http://localhost:3000/SignedIn/Notes", 
+            {
+                title : "title",
+                content : noteContent.content
+            }
+        , {
             headers : {
                 "Content-Type" : "application/json",
                 Authorization : `Bearer ${token}`
@@ -171,7 +176,7 @@ export async function handleRequestToProtected(requestHandler) {
             // Retry the original request with the new token
             const retryResponse = await requestHandler(newAccessToken);
             console.log("✅ Request successful after token refresh:", retryResponse.data);
-            return retryResponse;
+            return retryResponse.data;
         } catch (refreshError) {
             console.error("❌ Refresh token invalid or expired. Redirecting to sign-in.");
             window.location.href = "/SignIn";  

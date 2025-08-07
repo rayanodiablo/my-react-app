@@ -3,50 +3,53 @@ import { handleAddNote, handleRequestToProtected } from "../controller/controlle
 
 const NewNoteGen = ({setNotes, setErrorMessage} ) =>
 {
-    const [noteContent, setNoteContent] = useState("");
+    const [content, setcontent] = useState("");
 
 
 
     const handleBlur = async () => {
-        if(noteContent.trim() !== "")
+        if(content.trim() !== "")
         {
             //saving the note the user left
             
-            console.log('saving note: ', noteContent);
+            console.log('saving note: ', content);
             try{
-                const response = await handleRequestToProtected(async (accessToken)=> await handleAddNote({noteContent}, accessToken));
-                console.log("response received from the server : ", JSON.stringify(response));
-                setNotes((prev) =>[response, ...prev]);
+                const response = await handleRequestToProtected(async (accessToken)=> await handleAddNote({content}, accessToken));
+                console.log("response received from the server : ", JSON.stringify(response[0]));
+                const newNoteObject = response[0];
+                setNotes((prev) =>[newNoteObject, ...prev]);
                 setErrorMessage("");
                 
             }
             catch(error)
             {
                 console.log("error has occured : ",error.message);
-                setErrorMessage("error creating the new note!");
+                setErrorMessage("error creating the new note!, the cause");
                 
             }
             finally
             {
-                setNoteContent("");
+                setcontent("");
                 return
             }
 
         }
 
-        console.log("newNoteGen component has lost focus!");    
+        console.log("newNoteGen component has lost focus!");
+        setcontent("");
+        return ;   
     };
 
     const handleInputChange = (e) =>{
 
         const text = e.target.value;
-        setNoteContent(text);
+        setcontent(text);
     }
 
     return(
         <textarea id="newNoteGen"
         placeholder="New Note..."
-        value={noteContent}
+        value={content}
         onBlur={handleBlur}
         onInput={handleInputChange} > </textarea>
     )
