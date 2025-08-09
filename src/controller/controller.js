@@ -12,14 +12,13 @@ export function setToken(key, value){
 export async function handleSignUp (userInfos) 
 {
     try{
-        const theUserName = userInfos.userName;
         console.log(`the request body sent is : ${JSON.stringify(userInfos)}`);
 
         const response = await axios.post("http://localhost:3000/SignUp",  userInfos, {
             headers: { "Content-Type": "application/json" },
         });
 
-        console.log("signed up user successfully! response: ", JSON.parse(response.data));
+        console.log("signed up user successfully! response: ");
         return response.data;
     }  
     catch(error){

@@ -1,20 +1,26 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import {useSignInFormData} from "../formHandler/useFormData"
 
+const SignIn = () => {
 
-const SignIn = ({signInFormData, handleChange, handleSubmit, isLoading, errorMessage}) => {
-
+    const {
+        isLoading,
+        errorMessage,
+        handleInputChange,
+        handleSignInFormSubmission
+    } = useSignInFormData()
+    
     return (
         <div id="signInBox">
             <div id="SignInTitle">Sign In</div>
             <form onSubmit={(e) =>{
                 e.preventDefault();
-                if(!isLoading) handleSubmit();
+                if(!isLoading) handleSignInFormSubmission();
             }}>
-                <input type="text" name="userName" id="nameInput" placeholder="user name" onChange={handleChange}/>
+                <input type="text" name="userName" id="nameInput" placeholder="user name" onChange={handleInputChange}/>
                 <br />
                 <br />
-                <input type="password" name="password" placeholder="Password" onChange={handleChange}/>
+                <input type="password" name="password" placeholder="Password" onChange={handleInputChange}/>
                 <br />
                 <br />
                 <button type="submit" disabled={isLoading}>{isLoading? "Signing in...": "Sign In"}</button>

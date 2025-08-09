@@ -1,9 +1,9 @@
-import React from "react";
+import {useContext} from "react";
 import { Link } from "react-router-dom";
+import { SignUpFormContext } from "../formHandler/useFormData";
+const SignUpFin = () => {
 
-const SignUpFin = ({ SignUpFormData, handleChange, handleSubmit, isLoading, errorMessage}) => {
-
-
+    const {handleInputChange, errorMessage, isLoading, handleSignUpFormSubmission, signUpFormData} = useContext(SignUpFormContext)
 
 
 
@@ -14,20 +14,20 @@ const SignUpFin = ({ SignUpFormData, handleChange, handleSubmit, isLoading, erro
                         e.preventDefault()
                         if(!isLoading) 
                             {
-                                handleSubmit();
+                                handleSignUpFormSubmission();
                             }
                     }
                     }>
                         
-                        <input type="password" name="password" placeholder="Password" className="SignInItem" onChange={handleChange}/>
+                        <input type="password" name="password" placeholder="Password" className="SignInItem" onChange={handleInputChange} value={signUpFormData.password}/>
                         <br />
                         <br />
-                        <input type="password" name="confirmPassword" placeholder="Confirm the Password" className="SignInItem" onChange={handleChange}/>
+                        <input type="password" name="confirmPassword" placeholder="Confirm the Password" className="SignInItem" onChange={handleInputChange} value={signUpFormData.confirmPassword}/>
                         <br />
                         <br />
                         <button type="submit" className="SignInItem Button" disabled={isLoading}>Sing Up</button>
-                        <Link to='/SignUp'> <button className="Button" id="previousButton">Previous</button></Link>
-                        <Link to='/SignIn'><button className="Button SignInUpButton" >SignIn</button></Link>
+                        <Link to='/SignUp'> <button type="button" className="Button" id="previousButton">Previous</button></Link>
+                        <Link to='/SignIn'><button type="button" className="Button SignInUpButton" >SignIn</button></Link>
 
                     </form>
 
