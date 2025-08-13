@@ -72,7 +72,7 @@ export async function handleAddNote (noteContent, token)
     try{
         const response = await axios.post("http://localhost:3000/SignedIn/Notes", 
             {
-                title : "title",
+                title : "",
                 content : noteContent.content
             }
         , {

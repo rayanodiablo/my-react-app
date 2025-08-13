@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NewNoteGen from "../Components/NewNoteGen";
 import { handleFetchAllNotes, handleLogout, handleRequestToProtected } from "../controller/controller";
 import Note from "../Components/Note";
@@ -7,10 +7,15 @@ import Note from "../Components/Note";
 const Notes =  () => {
 
     const [notes, setNotes] = useState([]);
-    const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+    const [noteFocused, setNoteFocused] = useState({
+        isFocused : false,
+        focusedNoteObject : null
+    });
     
+    const focusedNoteRef = useRef(null);
 
     useEffect( () => {
             const fetchNotes = async() => { 
@@ -34,7 +39,16 @@ const Notes =  () => {
         fetchNotes();
 
     }
-     , [])
+     , []);
+
+    useEffect( () => {
+        if (noteFocused?.isFocused && focusedNoteRef.current)
+            {
+                focusedNoteRef.current.focus();
+            }  
+    }, [noteFocused.isFocused]);
+
+
 
     async function handleLogoutClick (e){
         try{
@@ -56,8 +70,8 @@ const Notes =  () => {
 
     return(
         <div id="notesPageContainer">
-
-            <button id="logout" onClick={handleLogoutClick} disabled={isButtonDisabled}>
+{/*             <div id="debugDiv">is it focused: {noteFocused?.isFocused !== undefined ? String(noteFocused.isFocused) : "not set"}</div>
+ */}            <button id="logout" onClick={handleLogoutClick} disabled={isButtonDisabled}>
                 {isButtonDisabled ? 'Logging Out...' : 'Log Out'}
             </button>
             <section id="searchNoteSection">
@@ -68,18 +82,15 @@ const Notes =  () => {
                 }> <button id="searchNoteButton" type="submit" ><span className="material-symbols-outlined">search</span></button> <input id="searchNoteInput" type="text"  placeholder="Search" /></form>
             </section>
 
-
-
             <section id="newNoteSection"> <NewNoteGen setNotes={setNotes} setErrorMessage={setErrorMessage}/></section>
            
             { notes.length === 0 && <div className="messages"> {"Create new Notes!"} </div>}
 
-           
             {errorMessage && <div className="errorMessage"> {errorMessage} </div>}
-           
 
-
-            <section id="existingNotesSection"> { notes.map(note => <Note noteObject={note} key={note.id} setNotes={setNotes} />)}</section>
+            <section id="existingNotesSection"> { notes.map(note => <Note noteObject={note} key={note.id} setNotes={setNotes} setNoteFocused={setNoteFocused} />)}</section>
+            { noteFocused.isFocused &&  <section id="focuedNoteContainer" > <Note ref={focusedNoteRef} setNotes={setNotes}  noteObject={noteFocused.focusedNoteObject}  setNoteFocused={setNoteFocused} ></Note></section>}
+        
         </div>
     );
 }

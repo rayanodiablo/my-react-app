@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, forwardRef } from "react";
 import { handleDeleteNote, handleUpdate, handleRequestToProtected } from "../controller/controller";
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close" />;
 
-const Note = ({noteObject, setNotes} ) => {
+const Note = forwardRef(({noteObject, setNotes, setNoteFocused}, forwardedRef ) => {
 
 
     const [noteState, noteStateSetter] = useState(noteObject);
 
     const [lastSavedState, setNextState] = useState(noteObject);
+    const focusedNoteRef = useRef(null); 
+
     const textareaRef = useRef(null);
     const titleTextareaRef = useRef(null);
 
@@ -19,16 +21,35 @@ const Note = ({noteObject, setNotes} ) => {
         }));
     };
     
+    useEffect(() => {
+    if (forwardedRef) {
+      // Forwarded ref points to the main content textarea
+      forwardedRef.current = textareaRef.current;
+    }
+  }, [forwardedRef]);
+
 
     
-    async function handleBlur () {
+    async function handleBlur (e) {
+        
+        
         if(noteState.content === lastSavedState.content && noteState.title === lastSavedState.title  )
         {
             console.log("no changes made!");
+            if(!focusedNoteRef.current.contains(e.relatedTarget)){
+                setNoteFocused({
+                isFocused : false,
+                focusedNoteObject : null
+                })
+            }
+        
             return;
         };
 
         try{
+
+            console.log(`the object with content: ${noteState.content} has lost focused`);
+
             //logout for developpement debugging purposes
             console.log("updated note should be : ", noteState.content);
             console.log("note id is: ", noteState.id);
@@ -38,19 +59,41 @@ const Note = ({noteObject, setNotes} ) => {
             console.log("updated the note successfully! , response : ",response);
 
             setNextState(noteState);
+            const changedField = e.target.name
             setNotes((prevNotes) => {
                 const nextNotes = prevNotes;
-                nextNotes.find(notesObj => notesObj.id === noteObject.id).content = noteState.content;
+                nextNotes.find(notesObj => notesObj.id === noteObject.id)[changedField] = noteState[changedField];
+                console.log(nextNotes)
                 return nextNotes;
-            })
+            });
+
         }
         catch(error)
         {
             console.error("error while updating the note!!, error: ",error.message);
         }
+        finally{
+            if(!focusedNoteRef.current.contains(e.relatedTarget)){
+                setNoteFocused({
+                isFocused : false,
+                focusedNoteObject : null
+                })
+            }
+        }
 
 
     };
+
+    const handleFocus = async (e) =>{
+        if (e.target.closest('.note-delete-btn')) return; // ignore delete clicks
+
+        setNoteFocused({
+        isFocused : true,
+        focusedNoteObject : noteState        
+    });
+    console.log(`the object with content: ${noteState.content} has been focused`);
+
+    }
 
     const handleDelete = async (e) => {
         try{
@@ -88,9 +131,9 @@ const Note = ({noteObject, setNotes} ) => {
 
     return(
            ( 
-            <div className="noteContainer">
-                <div className="noteNavBar">
-                    <button onClick={handleDelete}>x</button>
+            <div className="noteContainer" onFocus={handleFocus} ref={focusedNoteRef} >
+                <div className="noteNavBar note-delete-btn">
+                    <button  onClick={(e) => {handleDelete(noteObject.id);}}>x</button>
                 </div>
                 <textarea ref={titleTextareaRef} name="title" className="noteTitle" value={noteState.title} onChange={handleNoteChange} onBlur={handleBlur} placeholder="Title..."></textarea>
                 <textarea ref={textareaRef} name="content" className="noteContent" value={noteState.content} onChange={handleNoteChange} onBlur={handleBlur} placeholder="Note..." >
@@ -98,11 +141,10 @@ const Note = ({noteObject, setNotes} ) => {
                 <div className="noteMetadata"> <div className="noteMetadataDiv createdAt">Created: {noteState.created_at.replace("T", " ").replace("Z", "").split(".")[0]}</div>   <div className="noteMetadataDiv UpdatedAt">Updated: {noteState.updated_at.replace("T", " ").replace("Z", "").split(".")[0]}</div>  </div>
             </div>
 
-            //  created_at.replace("T", " ").replace("Z", "").split(".")[0]
             
            ) 
     
     )
-}
+});
 
 export default Note;

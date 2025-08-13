@@ -103,19 +103,11 @@
         padding: 4px;
         gap: 8px;
         
+  
 
         .noteContainer
         {
-            textarea {
-            all: unset; /* ← resets all inherited/built-in styles */
-            resize: none; /* optional: disables manual resizing */
-            }
 
-            textarea:focus {
-            outline: none; /* remove focus border */
-            box-shadow: none; /* some browsers apply this */
-            border: none; /* remove any default border */
-            }
             display: flex;
             flex-direction: column;
             justify-content: start;
@@ -126,6 +118,17 @@
             outline: 1px solid gray;
             border-radius: 4px;
             box-shadow: rgb(255, 255, 255) 1px 1px 0px ;
+
+            textarea {
+            all: unset; /* ← resets all inherited/built-in styles */
+            resize: none; /* optional: disables manual resizing */
+            }
+
+            textarea:focus {
+            outline: none; /* remove focus border */
+            box-shadow: none; /* some browsers apply this */
+            border: none; /* remove any default border */
+            }
 
             .noteNavBar
             {
@@ -204,8 +207,12 @@
                     align-items: center;              
                 }
             }
+
+
             
         }
+
+
     }
 
 
@@ -257,3 +264,144 @@
     color: rgba(255, 255, 255, 0.747);
     opacity: 1; /* Firefox */
   }
+
+
+  #debugDiv{
+    outline: 1px solid red;
+    position: fixed;
+    z-index: 1000;
+    width: 200px;
+    min-height: 100px;
+    left: 50%;
+    top: 50%;
+    background-color: #000000;
+    color: white;
+    padding: 8px;
+    font-size: large;
+    
+  }
+
+#focuedNoteContainer{
+display: flex;
+width: 640px;
+min-height: 400px;
+z-index: 2000;
+position: fixed;     /* stays in place even when scrolling */
+top: 50%;             /* position's top edge in the middle of the viewport */
+left: 50%;            /* position's left edge in the middle of the viewport */
+transform: translate(-50%, -50%);
+//transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+
+
+
+    .noteContainer
+    {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        margin: 8px ;
+        background-color: transparent;
+        min-height: 240px;
+        width: 100%;
+        outline: 1px solid gray;
+        border-radius: 4px;
+        box-shadow: rgb(255, 255, 255) 1px 1px 0px ;
+
+        textarea {
+        all: unset; /* ← resets all inherited/built-in styles */
+        resize: none; /* optional: disables manual resizing */
+        }
+
+        textarea:focus {
+        outline: none; /* remove focus border */
+        box-shadow: none; /* some browsers apply this */
+        border: none; /* remove any default border */
+        }
+
+        .noteNavBar
+        {
+            display: none;
+            justify-content: space-between;
+            align-items: stretch;
+            height: 0px;
+            background-color: #6e6e6e;
+            button {
+                padding: 0 4px ;
+                outline: none;
+                border: none;
+                background-color: transparent;
+                transition: background-color 0.15s ease-in-out ;
+                font-size: large;
+                line-height: 1;
+
+            };
+            button:hover{
+                    background-color: rgba(197, 50, 24, 0.815) !important;
+                    };
+            
+        }
+
+        .noteTitle{
+            background-color: rgb(24, 24, 24);
+            padding: 8px 16px;
+            @include variables.text(white);
+            border:  1px solid rgb(110, 110, 110);
+            resize: none; 
+            overflow: hidden;
+            
+            min-height: 0; /* Set initial minimum height */
+            width: 100%; /* Ensure it fills the parent width */                
+        }
+        .noteContent
+        {
+
+            background-color: rgb(12, 12, 12);
+            padding: 8px 16px;
+            @include variables.text(white);
+            
+            border: none;
+            border-bottom:  1px solid rgb(110, 110, 110);
+            resize: none; 
+            overflow: hidden;
+
+            min-height: 216px; /* Set initial minimum height */
+            width: 100%; /* Ensure it fills the parent width */
+    
+            /* Allow content-based growth */
+            height: auto; 
+        }
+
+        .noteContent:focus{
+            outline: none;
+            border: none;
+        }
+
+        .noteMetadata{
+            
+            background-color: rgb(19, 19, 19);
+            padding: 0px;
+            height: 40px;
+            width: 100%;
+            @include variables.small_text(rgba(238, 238, 238, 0.74));
+            display: flex;
+            justify-content:space-between;
+            align-items: stretch;
+
+            .noteMetadataDiv{
+                padding: 0;
+                width: 49%;
+                display: flex;
+                justify-content: center; /* Horizontal */
+                align-items: center;              
+            }
+        }
+
+
+        
+    }
+
+
+
+
+}
